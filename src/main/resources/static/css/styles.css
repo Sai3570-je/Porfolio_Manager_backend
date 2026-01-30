@@ -1,0 +1,335 @@
+/* Custom CSS Styles for Portfolio Manager */
+
+/* General Styles */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+/* Smooth transitions */
+* {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Table styles */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Card hover effects */
+.bg-white {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bg-white:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Button styles */
+button {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Input focus styles */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Modal overlay */
+.modal-overlay {
+    backdrop-filter: blur(4px);
+}
+
+/* Toast animation */
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+}
+
+.toast-show {
+    animation: slideIn 0.3s ease forwards;
+}
+
+.toast-hide {
+    animation: slideOut 0.3s ease forwards;
+}
+
+/* Gain/Loss color indicators */
+.gain {
+    color: #10b981;
+}
+
+.loss {
+    color: #ef4444;
+}
+
+.neutral {
+    color: #6b7280;
+}
+
+/* Asset type badges */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge-stock {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+.badge-bond {
+    background-color: #d1fae5;
+    color: #059669;
+}
+
+.badge-cash {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.badge-etf {
+    background-color: #ede9fe;
+    color: #7c3aed;
+}
+
+.badge-mutual_fund {
+    background-color: #fce7f3;
+    color: #db2777;
+}
+
+.badge-cryptocurrency {
+    background-color: #fff7ed;
+    color: #ea580c;
+}
+
+.badge-other {
+    background-color: #f3f4f6;
+    color: #4b5563;
+}
+
+/* Loading spinner */
+.loading-spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Table row hover */
+tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+/* Chart container */
+.chart-container {
+    position: relative;
+    height: 250px;
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .grid-cols-1 {
+        gap: 1rem;
+    }
+
+    .px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .py-8 {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    /* Stack buttons on mobile */
+    .flex-wrap {
+        flex-wrap: wrap;
+    }
+
+    /* Adjust table for mobile */
+    .overflow-x-auto {
+        margin: 0 -1rem;
+        padding: 0 1rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    nav, footer, .no-print {
+        display: none !important;
+    }
+
+    .bg-white {
+        box-shadow: none !important;
+        border: 1px solid #e5e7eb;
+    }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.slide-up {
+    animation: slideUp 0.4s ease forwards;
+}
+
+/* Card entrance animation */
+.bg-white {
+    animation: slideUp 0.4s ease forwards;
+}
+
+.bg-white:nth-child(1) { animation-delay: 0.1s; }
+.bg-white:nth-child(2) { animation-delay: 0.2s; }
+.bg-white:nth-child(3) { animation-delay: 0.3s; }
+.bg-white:nth-child(4) { animation-delay: 0.4s; }
+
+/* Icon hover effects */
+button i {
+    transition: transform 0.2s ease;
+}
+
+button:hover i {
+    transform: scale(1.1);
+}
+
+/* Focus visible for accessibility */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Disabled button state */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Success/Error states */
+.form-group.error input,
+.form-group.error select {
+    border-color: #ef4444;
+}
+
+.form-group.success input,
+.form-group.success select {
+    border-color: #10b981;
+}
+
+/* Modal animations */
+#itemModal {
+    transition: opacity 0.3s ease;
+}
+
+#itemModal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#itemModal:not(.hidden) {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Responsive table */
+@media (max-width: 1024px) {
+    .overflow-x-auto {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 800px;
+    }
+}
+
+/* Smooth page load */
+body {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
