@@ -18,6 +18,25 @@ public class PositionServiceImpl implements PositionService {
         this.repo = repo;
     }
 
+    public Double getTotalInvestment() {
+        return repo.calculateTotalInvestment();
+    }
+
+    @Override
+    public Long getHoldingsCount() {
+        return repo.countActiveHoldings();
+    }
+
+    @Override
+    public Double getTotalPortfolioValue() {
+        return repo.calculateTotalPortfolioValue();
+    }
+    @Override
+    public Double getTotalGainLoss() {
+        Double portfolioValue = repo.calculateTotalPortfolioValue();
+        Double investment = repo.calculateTotalInvestment();
+        return portfolioValue - investment;
+    }
     @Override
     public List<Position> findAll() { return repo.findAll(); }
 
