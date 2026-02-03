@@ -1,8 +1,8 @@
-package com.example.Portfolio_Manager.controller;
+package com.example.portfoliomanager.controller;
 
-import com.example.Portfolio_Manager.beans.Asset;
-import com.example.Portfolio_Manager.beans.Portfolio;
-import com.example.Portfolio_Manager.service.PortfolioService;
+import com.example.portfoliomanager.beans.Asset;
+import com.example.portfoliomanager.beans.Portfolio;
+import com.example.portfoliomanager.service.PortfolioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
