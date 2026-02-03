@@ -1,4 +1,4 @@
-package com.example.Portfolio_Manager;
+package com.example.portfoliomanager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
