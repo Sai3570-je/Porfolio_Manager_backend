@@ -1,39 +1,30 @@
-package com.example.Portfolio_Manager.service;
+package com.example.portfoliomanager.service;
 
-import com.example.Portfolio_Manager.beans.Transaction;
-import com.example.Portfolio_Manager.beans.TransactionType;
-import com.example.Portfolio_Manager.repository.TransactionRepository;
+import com.example.portfoliomanager.beans.Transaction;
+import com.example.portfoliomanager.repository.TransactionRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
+    private final TransactionRepository repo;
 
-    private final TransactionRepository transactionRepository;
-
-    public TransactionServiceImpl(TransactionRepository transactionRepository) {
-        this.transactionRepository = transactionRepository;
+    @Autowired
+    public TransactionServiceImpl(TransactionRepository repo) {
+        this.repo = repo;
     }
 
     @Override
-    public List<Transaction> getAllTransactions() {
-        return transactionRepository.findAll();
-    }
+    public List<Transaction> findAll() { return repo.findAll(); }
 
     @Override
-    public List<Transaction> getTransactionsByAsset(Long assetId) {
-        return transactionRepository.findByAssetId(assetId);
-    }
+    public Optional<Transaction> findById(Long id) { return repo.findById(id); }
 
     @Override
-    public List<Transaction> getTransactionsByType(TransactionType type) {
-        return transactionRepository.findByTransactionType(type);
-    }
-
-    @Override
-    public List<Transaction> getTransactionsByDateRange(LocalDateTime from, LocalDateTime to) {
-        return transactionRepository.findByTimestampBetween(from, to);
-    }
+    @Transactional
+    public Transaction save(Transaction transaction) { return repo.save(transaction); }
 }

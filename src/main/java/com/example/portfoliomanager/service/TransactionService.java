@@ -1,18 +1,12 @@
-package com.example.Portfolio_Manager.service;
+package com.example.portfoliomanager.service;
 
-import com.example.Portfolio_Manager.beans.Transaction;
-import com.example.Portfolio_Manager.beans.TransactionType;
+import com.example.portfoliomanager.beans.Transaction;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface TransactionService {
-
-    List<Transaction> getAllTransactions();
-
-    List<Transaction> getTransactionsByAsset(Long assetId);
-
-    List<Transaction> getTransactionsByType(TransactionType type);
-
-    List<Transaction> getTransactionsByDateRange(LocalDateTime from, LocalDateTime to);
+    List<Transaction> findAll();
+    Optional<Transaction> findById(Long id);
+    Transaction save(Transaction transaction);
 }

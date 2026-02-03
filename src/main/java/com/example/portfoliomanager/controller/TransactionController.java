@@ -1,47 +1,35 @@
-package com.example.Portfolio_Manager.controller;
+package com.example.portfoliomanager.controller;
 
-import com.example.Portfolio_Manager.beans.Transaction;
-import com.example.Portfolio_Manager.beans.TransactionType;
-import com.example.Portfolio_Manager.service.TransactionService;
+import com.example.portfoliomanager.beans.Transaction;
+import com.example.portfoliomanager.service.TransactionService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.net.URI;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/transactions")
 public class TransactionController {
+    private final TransactionService service;
 
-    private final TransactionService transactionService;
-
-    public TransactionController(TransactionService transactionService) {
-        this.transactionService = transactionService;
+    public TransactionController(TransactionService service) {
+        this.service = service;
     }
 
-    // 1️⃣ Get all transactions
     @GetMapping
-    public List<Transaction> getAllTransactions() {
-        return transactionService.getAllTransactions();
+    public ResponseEntity<List<Transaction>> list() {
+        return ResponseEntity.ok(service.findAll());
     }
 
-    // 2️⃣ Get transactions by asset
-    @GetMapping("/asset/{assetId}")
-    public List<Transaction> getByAsset(@PathVariable Long assetId) {
-        return transactionService.getTransactionsByAsset(assetId);
+    @GetMapping("/{id}")
+    public ResponseEntity<Transaction> getById(@PathVariable Long id) {
+        return service.findById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // 3️⃣ Get transactions by type (BUY / SELL)
-    @GetMapping("/type/{type}")
-    public List<Transaction> getByType(@PathVariable TransactionType type) {
-        return transactionService.getTransactionsByType(type);
-    }
-
-    // 4️⃣ Get transactions by date range
-    @GetMapping("/date-range")
-    public List<Transaction> getByDateRange(
-            @RequestParam LocalDateTime from,
-            @RequestParam LocalDateTime to
-    ) {
-        return transactionService.getTransactionsByDateRange(from, to);
+    @PostMapping
+    public ResponseEntity<Transaction> create(@RequestBody Transaction t) {
+        Transaction saved = service.save(t);
+        return ResponseEntity.created(URI.create("/api/transactions/" + saved.getId())).body(saved);
     }
 }
