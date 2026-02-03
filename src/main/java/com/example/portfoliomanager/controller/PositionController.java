@@ -25,6 +25,23 @@ public class PositionController {
         this.service = service;
         this.instrumentRepository = instrumentRepository;
     }
+    @GetMapping("/holdings-count")
+    public Long getHoldingsCount() {
+        return service.getHoldingsCount();
+    }
+    @GetMapping("/total-portfolio-value")
+    public Double getTotalPortfolioValue() {
+        return service.getTotalPortfolioValue();
+    }
+    @GetMapping("/total-investment")
+    public Double getTotalInvestment() {
+        return service.getTotalInvestment();
+    }
+    @GetMapping("/total-gain-loss")
+    public Double getTotalGainLoss() {
+        return service.getTotalGainLoss();
+    }
+
     @GetMapping
     public ResponseEntity<List<Position>> list() {
         return ResponseEntity.ok(service.findAll());
