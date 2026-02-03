@@ -11,17 +11,19 @@ public interface PositionRepository extends JpaRepository<Position, Long> {
     @Query("SELECT COUNT(p) FROM Position p WHERE p.quantity > 0")
     Long countActiveHoldings();
 
+    // 2️⃣ Total Investment = SUM(quantity × avgPurchasePrice)
     @Query("""
-    SELECT COALESCE(SUM(p.quantity * mq.price), 0)
-    FROM Position p
-    JOIN MarketQuote mq ON p.asset.symbol = mq.symbol
-    WHERE p.quantity > 0
-""")
-    Double calculateTotalPortfolioValue();
-    @Query("""
-    SELECT COALESCE(SUM(p.quantity * p.avgPurchasePrice), 0)
-    FROM Position p
-    WHERE p.quantity > 0
-""")
+        SELECT COALESCE(SUM(p.quantity * p.avgPurchasePrice), 0)
+        FROM Position p
+        WHERE p.quantity > 0
+    """)
     Double calculateTotalInvestment();
+
+    // 3️⃣ Total Portfolio Value = SUM(quantity × currentPrice)
+    @Query("""
+        SELECT COALESCE(SUM(p.quantity * p.currentPrice), 0)
+        FROM Position p
+        WHERE p.quantity > 0
+    """)
+    Double calculateTotalPortfolioValue();
 }
