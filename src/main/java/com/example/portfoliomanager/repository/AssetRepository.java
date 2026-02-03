@@ -1,6 +1,6 @@
-package com.example.Portfolio_Manager.repository;
+package com.example.portfoliomanager.repository;
 
-import com.example.Portfolio_Manager.beans.Asset;
+import com.example.portfoliomanager.beans.Asset;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

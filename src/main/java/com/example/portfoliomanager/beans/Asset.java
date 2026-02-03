@@ -1,4 +1,4 @@
-package com.example.Portfolio_Manager.beans;
+package com.example.portfoliomanager.beans;
 
 import jakarta.persistence.*;
 

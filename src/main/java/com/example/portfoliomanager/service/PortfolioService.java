@@ -1,7 +1,7 @@
-package com.example.Portfolio_Manager.service;
+package com.example.portfoliomanager.service;
 
-import com.example.Portfolio_Manager.beans.Asset;
-import com.example.Portfolio_Manager.beans.Portfolio;
+import com.example.portfoliomanager.beans.Asset;
+import com.example.portfoliomanager.beans.Portfolio;
 
 public interface PortfolioService {
 
