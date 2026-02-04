@@ -1,5 +1,6 @@
 package com.example.portfoliomanager.beans;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +18,7 @@ public class Asset {
 
     @ManyToOne
     @JoinColumn(name = "portfolio_id")
+    @JsonBackReference
     private Portfolio portfolio;
 
     // Getters and Setters

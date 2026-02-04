@@ -1,5 +1,6 @@
 package com.example.portfoliomanager.beans;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class Portfolio {
     private Double totalValue;  // Total value of the portfolio
 
     @OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Asset> assets;
 
     // Getters and Setters
