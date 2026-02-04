@@ -13,7 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.net.URI;
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/positions")
 public class PositionController {
