@@ -27,12 +27,12 @@ class TransactionServiceImplTest {
 
     @Test
     void saveTransaction_shouldReturnSavedTransaction() {
-        Transaction transaction = new Transaction();
-        transaction.setQuantity(10.0);
+        Transaction transactions = new Transaction();
+        transactions.setQuantity(10.0);
 
-        when(transactionRepository.save(transaction)).thenReturn(transaction);
+        when(transactionRepository.save(transactions)).thenReturn(transactions);
 
-        Transaction saved = transactionService.save(transaction);
+        Transaction saved = transactionService.save(transactions);
 
         assertEquals(10.0, saved.getQuantity());
     }

@@ -34,9 +34,9 @@ class InstrumentServiceImplTest {
         when(instrumentRepository.existsBySymbol("AAPL")).thenReturn(false);
         when(instrumentRepository.save(instrument)).thenReturn(instrument);
 
-        Instrument result = instrumentService.save(instrument);
+        Instrument results = instrumentService.save(instrument);
 
-        assertEquals("AAPL", result.getSymbol());
+        assertEquals("AAPL", results.getSymbol());
     }
 
     @Test

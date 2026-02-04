@@ -43,11 +43,11 @@ class OrderServiceImplTest {
 
     @Test
     void findById_shouldReturnOptional() {
-        Order order = new Order();
-        order.setId(1L);
+        Order order1 = new Order();
+        order1.setId(1L);
 
         when(orderRepository.findById(1L))
-                .thenReturn(Optional.of(order));
+                .thenReturn(Optional.of(order1));
 
         Optional<Order> result = orderService.findById(1L);
 

@@ -83,8 +83,8 @@ class PositionServiceImplTest {
     void getTotalGainLossPercentage_whenInvestmentIsZero_shouldReturnZero() {
         when(positionRepository.calculateTotalInvestment()).thenReturn(0.0);
 
-        Double result = positionService.getTotalGainLoss();
+        Double results = positionService.getTotalGainLoss();
 
-        assertEquals(0.0, result);
+        assertEquals(0.0, results);
     }
 }
