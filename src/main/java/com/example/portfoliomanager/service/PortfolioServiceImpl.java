@@ -66,4 +66,3 @@ public class PortfolioServiceImpl implements PortfolioService {
         return portfolioRepository.save(portfolio);
     }
 }
-

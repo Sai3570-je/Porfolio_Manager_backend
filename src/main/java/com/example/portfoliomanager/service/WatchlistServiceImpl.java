@@ -41,4 +41,3 @@ public class WatchlistServiceImpl implements WatchlistService {
     @Transactional
     public void deleteByInstrumentId(Long instrumentId) { repo.deleteByInstrumentId(instrumentId); }
 }
-
