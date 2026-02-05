@@ -89,7 +89,7 @@ class OrderServiceImplTest {
     @Test
     void delete_shouldCallRepositoryDelete() {
         Long id = 10L;
-
+        when(orderRepository.existsById(id)).thenReturn(true);
         doNothing().when(orderRepository).deleteById(id);
 
         orderService.delete(id);
@@ -122,10 +122,11 @@ class OrderServiceImplTest {
         when(orderRepository.findById(99L))
                 .thenReturn(Optional.empty());
 
-        NoSuchElementException exception =
-                assertThrows(NoSuchElementException.class,
+        com.example.portfoliomanager.exception.NotFoundException exception =
+                assertThrows(com.example.portfoliomanager.exception.NotFoundException.class,
                         () -> orderService.execute(99L));
 
         assertTrue(exception.getMessage().contains("Order not found"));
     }
+
 }

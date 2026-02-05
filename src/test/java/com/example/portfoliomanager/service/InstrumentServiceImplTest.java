@@ -1,6 +1,7 @@
 package com.example.portfoliomanager.service;
 
 import com.example.portfoliomanager.beans.Instrument;
+import com.example.portfoliomanager.exception.ConflictException;
 import com.example.portfoliomanager.repository.InstrumentRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,14 +46,11 @@ class InstrumentServiceImplTest {
         instrument.setSymbol("AAPL");
 
         when(instrumentRepository.existsBySymbol("AAPL")).thenReturn(true);
-
-        ResponseStatusException exception =
-                assertThrows(ResponseStatusException.class,
+        ConflictException exception =
+                assertThrows(ConflictException.class,
                         () -> instrumentService.save(instrument));
-
-        assertEquals(409, exception.getStatusCode().value());
+        assertTrue(exception.getMessage().contains("already exists"));
     }
-
     // ---------------- FIND ALL ----------------
 
     @Test
@@ -100,15 +98,16 @@ class InstrumentServiceImplTest {
     }
 
     // ---------------- DELETE ----------------
-
     @Test
     void delete_shouldCallRepositoryDelete() {
         Long id = 10L;
 
+        when(instrumentRepository.existsById(id)).thenReturn(true);
         doNothing().when(instrumentRepository).deleteById(id);
 
         instrumentService.delete(id);
 
         verify(instrumentRepository, times(1)).deleteById(id);
     }
+
 }
